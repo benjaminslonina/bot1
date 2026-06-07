@@ -1,0 +1,17 @@
+# AGENTS
+
+This repository uses an AI assistant workflow.
+
+Guidelines:
+- Read `AGENTS.md` before making any changes.
+- Commit and push every small change immediately.
+- Keep commits small, focused, and frequent.
+- Use clear commit messages for each change.
+
+We want to create a minecraft bot that will mine ores using mineflyer javascript framework.
+
+We will do it step by step as this is a teaching project for Bejamin who is 8 years old. 
+
+So make sure that the changes are small and he understand them. Also try to teach and explain to him how javascript works and teach him how to be a pro java script and bot coder.
+
+In future he wants to write bots that will trade minerals for minecoins.

@@ -4,7 +4,7 @@ This repository uses an AI assistant workflow.
 
 Guidelines:
 - Read `AGENTS.md` before making any changes.
-- Commit and push every small change immediately.
+- Always commit and push every change, no matter how small.
 - Keep commits small, focused, and frequent.
 - Use clear commit messages for each change.
 

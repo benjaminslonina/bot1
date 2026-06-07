@@ -21,7 +21,7 @@ const bot = mineflayer.createBot({
 function getFrontBlockPosition () {
   const yaw = bot.entity.yaw
   const dx = -Math.sin(yaw)
-  const dz = Math.cos(yaw)
+  const dz = -Math.cos(yaw)
   const stepX = Math.round(dx)
   const stepZ = Math.round(dz)
   const position = bot.entity.position
@@ -35,7 +35,7 @@ function isEntityInFront (entity) {
   if (!bot.entity || !bot.entity.position || !entity || !entity.position) return false
   const botPos = bot.entity.position
   const entityPos = entity.position
-  const forward = new Vec3(-Math.sin(bot.entity.yaw), 0, Math.cos(bot.entity.yaw))
+  const forward = new Vec3(-Math.sin(bot.entity.yaw), 0, -Math.cos(bot.entity.yaw))
   const toEntity = new Vec3(entityPos.x - botPos.x, 0, entityPos.z - botPos.z)
   const distance = toEntity.norm()
   if (distance === 0) return false

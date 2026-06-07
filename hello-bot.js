@@ -31,7 +31,18 @@ function getFrontBlockPosition () {
   return new Vec3(blockX, blockY, blockZ)
 }
 
-function getNearestTarget (range = 6) {
+function isEntityInFront (entity) {
+  const botPos = bot.entity.position
+  const entityPos = entity.position
+  const forward = new Vec3(-Math.sin(bot.entity.yaw), 0, Math.cos(bot.entity.yaw))
+  const toEntity = new Vec3(entityPos.x - botPos.x, 0, entityPos.z - botPos.z)
+  const distance = toEntity.length()
+  if (distance === 0) return false
+  const dot = forward.dot(toEntity.normalize())
+  return dot > 0.5
+}
+
+function getNearestTarget (range = 4) {
   let nearest = null
   let nearestDistance = Infinity
 
@@ -41,7 +52,7 @@ function getNearestTarget (range = 6) {
     if (entity.type !== 'mob' && entity.type !== 'player') continue
 
     const distance = entity.position.distanceTo(bot.entity.position)
-    if (distance < range && distance < nearestDistance) {
+    if (distance < range && distance < nearestDistance && isEntityInFront(entity)) {
       nearestDistance = distance
       nearest = entity
     }

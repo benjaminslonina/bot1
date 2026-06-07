@@ -50,6 +50,12 @@ function getNearestTarget (range = 6) {
   return nearest
 }
 
+function getInventoryArmorItem (itemName) {
+  const itemType = bot.registry.itemsByName[itemName]
+  if (!itemType) return null
+  return bot.inventory.findInventoryItem(itemType.id, null)
+}
+
 function equipArmor () {
   const armorSets = [
     {
@@ -72,12 +78,13 @@ function equipArmor () {
 
   for (const armor of armorSets) {
     for (const itemName of armor.items) {
-      const item = bot.inventory.findInventoryItem(itemName, null)
+      const item = getInventoryArmorItem(itemName)
       if (item) {
-        bot.equip(item, armor.destination, (err) => {
-          if (err) return
-          console.log(`Equipped ${itemName} in ${armor.destination}`)
-        })
+        bot.equip(item, armor.destination)
+          .then(() => {
+            console.log(`Equipped ${itemName} in ${armor.destination}`)
+          })
+          .catch(() => {})
         break
       }
     }

@@ -71,19 +71,19 @@ function equipArmor () {
   const armorSets = [
     {
       destination: 'feet',
-      items: ['diamond_boots', 'iron_boots', 'chainmail_boots', 'golden_boots', 'leather_boots']
+      items: ['netherite_boots', 'diamond_boots', 'iron_boots', 'chainmail_boots', 'golden_boots', 'leather_boots']
     },
     {
       destination: 'legs',
-      items: ['diamond_leggings', 'iron_leggings', 'chainmail_leggings', 'golden_leggings', 'leather_leggings']
+      items: ['netherite_leggings', 'diamond_leggings', 'iron_leggings', 'chainmail_leggings', 'golden_leggings', 'leather_leggings']
     },
     {
       destination: 'torso',
-      items: ['diamond_chestplate', 'iron_chestplate', 'chainmail_chestplate', 'golden_chestplate', 'leather_chestplate']
+      items: ['netherite_chestplate', 'diamond_chestplate', 'iron_chestplate', 'chainmail_chestplate', 'golden_chestplate', 'leather_chestplate']
     },
     {
       destination: 'head',
-      items: ['diamond_helmet', 'iron_helmet', 'chainmail_helmet', 'golden_helmet', 'leather_helmet']
+      items: ['netherite_helmet', 'diamond_helmet', 'iron_helmet', 'chainmail_helmet', 'golden_helmet', 'leather_helmet']
     }
   ]
 

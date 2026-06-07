@@ -31,11 +31,39 @@ function getFrontBlockPosition () {
   return new Vec3(blockX, blockY, blockZ)
 }
 
+function getNearestTarget (range = 6) {
+  let nearest = null
+  let nearestDistance = Infinity
+
+  for (const entityId in bot.entities) {
+    const entity = bot.entities[entityId]
+    if (!entity || entity === bot.entity || !entity.position) continue
+    if (entity.type !== 'mob' && entity.type !== 'player') continue
+
+    const distance = entity.position.distanceTo(bot.entity.position)
+    if (distance < range && distance < nearestDistance) {
+      nearestDistance = distance
+      nearest = entity
+    }
+  }
+
+  return nearest
+}
+
 bot.once('spawn', () => {
   console.log(`Bot connected to ${host}:${port} as ${username}`)
 
   setInterval(() => {
     bot.chat('hllo')
+    const target = getNearestTarget(6)
+
+    if (target) {
+      const name = target.username || target.name || target.type
+      console.log(`Attacking ${name}`)
+      bot.attack(target)
+      return
+    }
+
     const frontBlock = bot.blockAt(getFrontBlockPosition())
 
     if (frontBlock) {

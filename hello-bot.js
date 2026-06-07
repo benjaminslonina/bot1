@@ -32,6 +32,7 @@ function getFrontBlockPosition () {
 }
 
 function isEntityInFront (entity) {
+  if (!bot.entity || !bot.entity.position || !entity || !entity.position) return false
   const botPos = bot.entity.position
   const entityPos = entity.position
   const forward = new Vec3(-Math.sin(bot.entity.yaw), 0, Math.cos(bot.entity.yaw))
@@ -43,6 +44,7 @@ function isEntityInFront (entity) {
 }
 
 function getNearestTarget (range = 4) {
+  if (!bot.entity || !bot.entity.position) return null
   let nearest = null
   let nearestDistance = Infinity
 
@@ -107,6 +109,7 @@ bot.once('spawn', () => {
   equipArmor()
 
   setInterval(() => {
+    if (!bot.entity || !bot.entity.position) return
     bot.chat('hllo')
     equipArmor()
     const target = getNearestTarget(6)

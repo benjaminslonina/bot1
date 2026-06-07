@@ -17,3 +17,5 @@ So make sure that the changes are small and he understand them. Also try to teac
 In future he wants to write bots that will trade minerals for minecoins.
 
 We have a minecraft server running locally at pterodactyl.home.arpa.
+
+Everything learned about Mindflyer/Mineflayer will be documented in `docs/mindflyer`.

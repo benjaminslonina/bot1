@@ -1,6 +1,6 @@
 # bot1
 
-A simple Minecraft bot that connects to the local Pterodactyl server, says "hllo", and moves forward every 5 seconds.
+A simple Minecraft bot that connects to the local Pterodactyl server, says "hllo", moves forward every 5 seconds, and jumps if a block is detected in front.
 
 ## Setup
 

@@ -37,9 +37,9 @@ function isEntityInFront (entity) {
   const entityPos = entity.position
   const forward = new Vec3(-Math.sin(bot.entity.yaw), 0, Math.cos(bot.entity.yaw))
   const toEntity = new Vec3(entityPos.x - botPos.x, 0, entityPos.z - botPos.z)
-  const distance = toEntity.length()
+  const distance = toEntity.norm()
   if (distance === 0) return false
-  const dot = forward.dot(toEntity.normalize())
+  const dot = forward.dot(toEntity.unit())
   return dot > 0.5
 }
 

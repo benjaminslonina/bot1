@@ -15,3 +15,5 @@ We will do it step by step as this is a teaching project for Bejamin who is 8 ye
 So make sure that the changes are small and he understand them. Also try to teach and explain to him how javascript works and teach him how to be a pro java script and bot coder.
 
 In future he wants to write bots that will trade minerals for minecoins.
+
+We have a minecraft server running locally at pterodactyl.home.arpa.

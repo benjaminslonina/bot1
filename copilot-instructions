@@ -1,0 +1,7 @@
+Read `AGENTS.md` before making edits.
+
+Follow these rules:
+- Commit every small change.
+- Push every small change.
+- Keep changes limited and incremental.
+- Use explicit, descriptive commit messages.

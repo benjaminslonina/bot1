@@ -50,11 +50,47 @@ function getNearestTarget (range = 6) {
   return nearest
 }
 
+function equipArmor () {
+  const armorSets = [
+    {
+      destination: 'boots',
+      items: ['diamond_boots', 'iron_boots', 'chainmail_boots', 'golden_boots', 'leather_boots']
+    },
+    {
+      destination: 'leggings',
+      items: ['diamond_leggings', 'iron_leggings', 'chainmail_leggings', 'golden_leggings', 'leather_leggings']
+    },
+    {
+      destination: 'chestplate',
+      items: ['diamond_chestplate', 'iron_chestplate', 'chainmail_chestplate', 'golden_chestplate', 'leather_chestplate']
+    },
+    {
+      destination: 'helmet',
+      items: ['diamond_helmet', 'iron_helmet', 'chainmail_helmet', 'golden_helmet', 'leather_helmet']
+    }
+  ]
+
+  for (const armor of armorSets) {
+    for (const itemName of armor.items) {
+      const item = bot.inventory.findInventoryItem(itemName, null)
+      if (item) {
+        bot.equip(item, armor.destination, (err) => {
+          if (err) return
+          console.log(`Equipped ${itemName} in ${armor.destination}`)
+        })
+        break
+      }
+    }
+  }
+}
+
 bot.once('spawn', () => {
   console.log(`Bot connected to ${host}:${port} as ${username}`)
+  equipArmor()
 
   setInterval(() => {
     bot.chat('hllo')
+    equipArmor()
     const target = getNearestTarget(6)
 
     if (target) {

@@ -16,3 +16,17 @@ npm install mineflayer
 node hello-bot.js
 ```
 
+## Custom host
+
+If the hostname does not resolve, use the server IP directly:
+
+```bash
+MC_HOST=192.168.0.6 node hello-bot.js
+```
+
+You can also override the port and username with:
+
+```bash
+MC_PORT=25565 MC_USERNAME=BotName MC_HOST=192.168.0.6 node hello-bot.js
+```
+

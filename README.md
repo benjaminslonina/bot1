@@ -1,6 +1,14 @@
 # bot1
 
-A simple bot example that prints "hllo" every 5 seconds.
+A simple Minecraft bot that connects to the local Pterodactyl server and says "hllo" every 5 seconds.
+
+## Setup
+
+Install Mineflayer in this project first:
+
+```bash
+npm install mineflayer
+```
 
 ## Run the bot
 

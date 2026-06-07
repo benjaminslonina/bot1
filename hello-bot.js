@@ -70,19 +70,19 @@ function getInventoryArmorItem (itemName) {
 function equipArmor () {
   const armorSets = [
     {
-      destination: 'boots',
+      destination: 'feet',
       items: ['diamond_boots', 'iron_boots', 'chainmail_boots', 'golden_boots', 'leather_boots']
     },
     {
-      destination: 'leggings',
+      destination: 'legs',
       items: ['diamond_leggings', 'iron_leggings', 'chainmail_leggings', 'golden_leggings', 'leather_leggings']
     },
     {
-      destination: 'chestplate',
+      destination: 'torso',
       items: ['diamond_chestplate', 'iron_chestplate', 'chainmail_chestplate', 'golden_chestplate', 'leather_chestplate']
     },
     {
-      destination: 'helmet',
+      destination: 'head',
       items: ['diamond_helmet', 'iron_helmet', 'chainmail_helmet', 'golden_helmet', 'leather_helmet']
     }
   ]

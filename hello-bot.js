@@ -19,8 +19,13 @@ const bot = mineflayer.createBot({
 
 bot.once('spawn', () => {
   console.log(`Bot connected to ${host}:${port} as ${username}`)
+
   setInterval(() => {
     bot.chat('hllo')
+    bot.setControlState('forward', true)
+    setTimeout(() => {
+      bot.setControlState('forward', false)
+    }, 1000)
   }, 5000)
 })
 

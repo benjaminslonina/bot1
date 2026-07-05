@@ -9,17 +9,26 @@ const Vec3 = require('vec3')
 const host = process.env.MC_HOST || '192.168.0.6'
 const port = parseInt(process.env.MC_PORT, 10) || 25565
 const username = process.env.MC_USERNAME || 'its_eystreem'
-const password = process.env.MC_PASSWORD
-const auth = password ? 'microsoft' : 'offline'
+const password = process.env.MC_PASSWORD || undefined
+const auth = process.env.MC_AUTH || (password ? 'microsoft' : 'offline')
 
-const bot = mineflayer.createBot({
+const botOptions = {
   host,
   port,
   username,
-  password,
   auth,
   version: false
-})
+}
+
+if (password) {
+  botOptions.password = password
+}
+
+if (auth === 'microsoft' && !password) {
+  console.log('Microsoft auth selected. Mineflayer will try the browser sign-in flow if needed.')
+}
+
+const bot = mineflayer.createBot(botOptions)
 
 function getFrontBlockPosition () {
   const yaw = bot.entity.yaw

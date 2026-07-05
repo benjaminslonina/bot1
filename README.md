@@ -30,9 +30,15 @@ You can also override the port and username with:
 MC_PORT=25565 MC_USERNAME=its_eystreem MC_HOST=192.168.0.6 node hello-bot.js
 ```
 
-If you want the bot to use a real Minecraft skin, provide a Microsoft account password too:
+If you want the bot to use a real Minecraft skin, use a Microsoft account login:
 
 ```bash
-MC_USERNAME=its_eystreem MC_PASSWORD=your-password MC_HOST=192.168.0.6 node hello-bot.js
+MC_AUTH=microsoft MC_USERNAME=its_eystreem MC_HOST=192.168.0.6 node hello-bot.js
+```
+
+If that account uses a password login, you can also add a password:
+
+```bash
+MC_AUTH=microsoft MC_USERNAME=its_eystreem MC_PASSWORD=your-password MC_HOST=192.168.0.6 node hello-bot.js
 ```
 

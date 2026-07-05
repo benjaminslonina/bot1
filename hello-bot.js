@@ -11,6 +11,8 @@ const port = parseInt(process.env.MC_PORT, 10) || 25565
 const username = process.env.MC_USERNAME || 'its_eystreem'
 const password = process.env.MC_PASSWORD || undefined
 const auth = process.env.MC_AUTH || (password ? 'microsoft' : 'offline')
+const loopDelayMs = Math.max(750, parseInt(process.env.BOT_LOOP_DELAY_MS || '1000', 10))
+const moveDurationMs = Math.max(200, Math.min(350, Math.floor(loopDelayMs / 3)))
 
 const botOptions = {
   host,
@@ -408,13 +410,13 @@ bot.once('spawn', () => {
   })
 
   let botLoopRunning = false
-  let nextLoopDelay = 500
+  let nextLoopDelay = loopDelayMs
   let lastFrontBlockName = ''
 
   async function botLoop () {
     if (botLoopRunning) return
     botLoopRunning = true
-    nextLoopDelay = 500
+    nextLoopDelay = loopDelayMs
 
     try {
       if (!bot.entity || !bot.entity.position) return
@@ -432,7 +434,7 @@ bot.once('spawn', () => {
           bot.setControlState('forward', false)
           runOneBlock = false
           if (isPaused) bot.clearControlStates()
-        }, 400)
+        }, moveDurationMs)
         return
       }
 
@@ -443,7 +445,7 @@ bot.once('spawn', () => {
           bot.setControlState('left', false)
           runLeftBlock = false
           if (isPaused) bot.clearControlStates()
-        }, 400)
+        }, moveDurationMs)
         return
       }
 
@@ -454,7 +456,7 @@ bot.once('spawn', () => {
           bot.setControlState('right', false)
           runRightBlock = false
           if (isPaused) bot.clearControlStates()
-        }, 400)
+        }, moveDurationMs)
         return
       }
 
@@ -465,7 +467,7 @@ bot.once('spawn', () => {
           bot.setControlState('back', false)
           runBackBlock = false
           if (isPaused) bot.clearControlStates()
-        }, 400)
+        }, moveDurationMs)
         return
       }
 
@@ -557,7 +559,7 @@ bot.once('spawn', () => {
               bot.setControlState('jump', false)
             }, 250)
           }
-          nextLoopDelay = 250
+          nextLoopDelay = loopDelayMs
         } else if (distance > 2.4) {
           console.log(`Moving toward player ${name} (${distance.toFixed(2)} blocks)`)
           bot.setControlState('forward', true)

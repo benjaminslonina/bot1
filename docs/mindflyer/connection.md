@@ -24,7 +24,7 @@ const mineflayer = require('mineflayer')
 const bot = mineflayer.createBot({
   host: 'pterodactyl.home.arpa',
   port: 25565,
-  username: 'BotName',
+  username: 'its_eystreem',
   auth: 'offline',
   version: false
 })
@@ -44,7 +44,7 @@ bot.on('kicked', console.log)
 - `username`: the bot's name when joining.
 - `auth`: authentication mode. For local offline servers use `'offline'`. For online Mojang/Microsoft servers use `'microsoft'` or omit it and let Mineflayer guess.
 - `version`: if not set or set to `false`, Mineflayer tries to detect the server version automatically.
-- `password`: only needed for password-based auth; `username` must be an email address for this.
+- `password`: only needed for password-based auth; `username` must be an email address for this. If you want the bot to use a real account skin, use a Microsoft login with `auth: 'microsoft'` and the correct account credentials.
 
 ## 4. Working with server events
 
@@ -65,7 +65,7 @@ const mineflayer = require('mineflayer')
 const bot = mineflayer.createBot({
   host: 'pterodactyl.home.arpa',
   port: 25565,
-  username: 'BotName',
+  username: 'its_eystreem',
   auth: 'offline',
   version: false
 })

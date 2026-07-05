@@ -43,6 +43,12 @@ function getFrontBlockPosition () {
   return new Vec3(blockX, blockY, blockZ)
 }
 
+function getFrontBlockName () {
+  const frontPosition = getFrontBlockPosition()
+  const frontBlock = bot.blockAt(frontPosition)
+  return frontBlock ? frontBlock.name : 'air'
+}
+
 const foodItems = [
   'cooked_beef',
   'cooked_porkchop',
@@ -277,10 +283,10 @@ async function attackTarget (target) {
 function getInventoryArmorItem (itemName) {
   const itemType = bot.registry.itemsByName[itemName]
   if (!itemType) return null
-  return bot.inventory.findInventoryItem(itemType.id, null)
+  return bot.inventory.items().find((inventoryItem) => inventoryItem && inventoryItem.name === itemName) || null
 }
 
-function equipArmor () {
+async function equipArmor () {
   const armorSets = [
     {
       destination: 'feet',
@@ -303,13 +309,14 @@ function equipArmor () {
   for (const armor of armorSets) {
     for (const itemName of armor.items) {
       const item = getInventoryArmorItem(itemName)
-      if (item) {
-        bot.equip(item, armor.destination)
-          .then(() => {
-            console.log(`Equipped ${itemName} in ${armor.destination}`)
-          })
-          .catch(() => {})
+      if (!item) continue
+
+      try {
+        await bot.equip(item, armor.destination)
+        console.log(`Equipped ${itemName} in ${armor.destination}`)
         break
+      } catch (err) {
+        console.log(`Could not equip ${itemName} in ${armor.destination}: ${err.message || err}`)
       }
     }
   }
@@ -317,7 +324,15 @@ function equipArmor () {
 
 bot.once('spawn', () => {
   console.log(`Bot connected to ${host}:${port} as ${username}`)
-  equipArmor()
+  setTimeout(() => {
+    equipArmor().catch((err) => console.error('Armor equip failed:', err))
+  }, 1000)
+
+  bot.on('inventory', () => {
+    setTimeout(() => {
+      equipArmor().catch((err) => console.error('Armor equip failed:', err))
+    }, 300)
+  })
 
   bot.on('chat', (username, message) => {
     if (!username) return
@@ -394,6 +409,7 @@ bot.once('spawn', () => {
 
   let botLoopRunning = false
   let nextLoopDelay = 500
+  let lastFrontBlockName = ''
 
   async function botLoop () {
     if (botLoopRunning) return
@@ -402,6 +418,12 @@ bot.once('spawn', () => {
 
     try {
       if (!bot.entity || !bot.entity.position) return
+
+      const currentFrontBlockName = getFrontBlockName()
+      if (currentFrontBlockName !== lastFrontBlockName) {
+        console.log(`Front block: ${currentFrontBlockName}`)
+        lastFrontBlockName = currentFrontBlockName
+      }
 
       if (runOneBlock) {
         bot.clearControlStates()

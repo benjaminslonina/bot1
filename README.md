@@ -16,6 +16,14 @@ npm install mineflayer
 node hello-bot.js
 ```
 
+## Watch the bot
+
+If you want the bot to keep an eye on itself and restart if it stops, run:
+
+```bash
+npm run watch
+```
+
 ## Custom host
 
 If the hostname does not resolve, use the server IP directly:
